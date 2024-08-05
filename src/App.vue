@@ -18,9 +18,7 @@ export default {
 
 <template>
   <NavbarVue :logo="logo_src" :alt="app_name" />
-  <div class="main-container">
-    <router-view />
-  </div>
+  <router-view />
   <FooterVue />
 </template>
 
