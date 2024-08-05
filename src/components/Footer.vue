@@ -3,7 +3,21 @@ export default {
   name: "FooterComponent",
 };
 </script>
-<style scoped></style>
+
+<style scoped>
+footer {
+  height: 200px;
+  background-color: #222;
+  color: #fcba03;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+</style>
+
 <template>
-  <div>footer</div>
+  <footer>
+    <p>Make Your Burger &copy; {{ new Date().getFullYear() }}</p>
+  </footer>
 </template>
