@@ -2,9 +2,6 @@
   <div id="main-banner">
     <h2>Make Your Burger</h2>
   </div>
-  <div class="main-container">
-    <p>BANNER</p>
-  </div>
 </template>
 
 <script>
@@ -18,6 +15,7 @@ export default {
   background-image: url("/public/img/burger.jpg");
   background-position: 0 -250px;
   background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
   aspect-ratio: 19/8;
   display: flex;
