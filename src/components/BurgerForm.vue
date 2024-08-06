@@ -24,15 +24,23 @@
           <option value="0">Patinho</option>
         </select>
       </div>
-      <div class="input-container">
-        <label>Selecione os opcionais</label>
+      <div id="optionals" class="input-container">
+        <span id="optionals-title">Selecione os opcionais</span>
         <div class="checkbox-container">
-          <span for="salame">Salame</span>
           <input type="checkbox" name="salame" id="salame" />
+          <label class="optional-label" for="salame">Salame</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" name="qwe" id="qwe" />
+          <label class="optional-label" for="qwe">qwe</label>
+        </div>
+        <div class="checkbox-container">
+          <input type="checkbox" name="asd" id="asd" />
+          <label class="optional-label" for="asd">asd</label>
         </div>
       </div>
       <div class="input-container">
-        <input type="submit" class="submit-btn" value="Confirmar" />
+        <input type="submit" class="submit-btn" value="Criar meu Burguer!" />
       </div>
     </form>
   </div>
@@ -54,12 +62,17 @@ export default {};
   margin-bottom: 20px;
 }
 
-label {
+label:not(.optional-label),
+#optionals-title {
   font-weight: bold;
   margin-bottom: 15px;
   color: #222;
   padding: 5px 10px;
   border-left: 4px solid #fcba03;
+}
+
+.optional-label {
+  margin-left: 0.5em;
 }
 
 input,
@@ -75,9 +88,29 @@ select {
 
 .checkbox-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   width: 50%;
   margin-bottom: 20px;
+}
+.checkbox-container label,
+.checkbox-container input {
+  width: auto;
+}
+
+.submit-btn {
+  background-color: #222;
+  color: #fcba03;
+  font-weight: bold;
+  border: 2px solid #222;
+  padding: 10px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.submit-btn:hover {
+  background-color: #fcba03;
+  color: #222;
 }
 </style>
