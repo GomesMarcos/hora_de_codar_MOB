@@ -15,28 +15,36 @@
       <div class="input-container">
         <label for="bread">Selecione o pão</label>
         <select name="bread" id="bread" v-model="bread">
-          <option value="0">Integral</option>
+          <option
+            v-for="bread in breadOptions"
+            :value="bread.id"
+            v-bind:key="bread.id"
+          >
+            {{ bread.tipo }}
+          </option>
         </select>
       </div>
       <div class="input-container">
         <label for="protein">Selecione a proteína</label>
         <select name="protein" id="protein" v-model="protein">
-          <option value="0">Patinho</option>
+          <option
+            v-for="protein in proteinOptions"
+            :value="protein.id"
+            v-bind:key="protein.id"
+          >
+            {{ protein.tipo }}
+          </option>
         </select>
       </div>
       <div id="optionals" class="input-container">
         <span id="optionals-title">Selecione os opcionais</span>
-        <div class="checkbox-container">
-          <input type="checkbox" name="salame" id="salame" />
-          <label class="optional-label" for="salame">Salame</label>
-        </div>
-        <div class="checkbox-container">
-          <input type="checkbox" name="qwe" id="qwe" />
-          <label class="optional-label" for="qwe">qwe</label>
-        </div>
-        <div class="checkbox-container">
-          <input type="checkbox" name="asd" id="asd" />
-          <label class="optional-label" for="asd">asd</label>
+        <div
+          class="checkbox-container"
+          v-for="opt in fetchedOptionals"
+          v-bind:key="opt.id"
+        >
+          <input type="checkbox" :name="opt.id" :id="opt.id" />
+          <label class="optional-label" :for="opt.id">{{ opt.tipo }}</label>
         </div>
       </div>
       <div class="input-container">
@@ -47,7 +55,37 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "BurgerForm",
+  data() {
+    return {
+      breadOptions: null,
+      proteinOptions: null,
+      fetchedOptionals: null,
+      customerName: "",
+      bread: null,
+      protein: null,
+      optionals: [],
+      status: "Solicitado",
+      message: null,
+    };
+  },
+
+  methods: {
+    async getIngredients() {
+      const request = await fetch("http://localhost:3000/ingredientes");
+      const data = await request.json();
+
+      this.breadOptions = data.paes;
+      this.proteinOptions = data.carnes;
+      this.fetchedOptionals = data.opcionais;
+    },
+  },
+
+  mounted() {
+    this.getIngredients();
+  },
+};
 </script>
 
 <style>
@@ -73,6 +111,7 @@ label:not(.optional-label),
 
 .optional-label {
   margin-left: 0.5em;
+  font-weight: bold;
 }
 
 input,
